@@ -1,0 +1,77 @@
+<!-- user_list.html -->
+<head>
+	<style>
+		table {
+			width: 100%;
+			border-collapse: collapse; /* Makes the borders collapse into a single border */
+		}
+		th, td {
+			border: 1px solid lightgray; /* Border for the table cells */
+			padding: 8px; /* Adds padding inside the table cells */
+			text-align: left; /* Aligns text to the left in the cells */
+		}
+		th {
+			background-color: lightgray; /* Gives a background color to table headers */
+		}
+		tr:nth-child(even) {
+			background-color: whiteSmoke; /* Alternates row color for better readability */
+		}
+	</style
+</head>
+<body>
+	<h1>User List</h1>
+	<a href="{% url 'create_user' %}" class="btn btn-primary">Create User</a>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Username</th>
+				<th>Can Access Contact</th>
+				<th>Can Access Sales</th>
+				<th>Can Access Purchase</th>
+				<th>Can Access Account</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+			<tr>
+				<td>{{ user.id }}</td>
+				<td>{{ user.username }}</td>
+				<td>
+					{% if user.can_access_contact %}
+					<button class="btn-true">True</button>
+					{% else %}
+					<button class="btn-false" disabled>False</button>
+					{% endif %}
+				</td>
+				<td>
+					{% if user.can_access_sales %}
+					<button class="btn-true">True</button>
+					{% else %}
+					<button class="btn-false" disabled>False</button>
+					{% endif %}
+				</td>
+				<td>
+					{% if user.can_access_purchase %}
+					<button class="btn-true">True</button>
+					{% else %}
+					<button class="btn-false" disabled>False</button>
+					{% endif %}
+				</td>
+				<td>
+					{% if user.can_access_account %}
+					<button class="btn-true">True</button>
+					{% else %}
+					<button class="btn-false" disabled>False</button>
+					{% endif %}
+				</td>
+				<td>
+					<a href="{% url 'edit_user' user.pk %}">Edit</a>
+					<a href="{% url 'delete_user' user.pk %}">Delete</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
