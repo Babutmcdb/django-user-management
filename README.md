@@ -11,7 +11,8 @@ A Django-based web application for managing users with MySQL as the database. Th
 ## Installation
 
 1. **Create Project folder**
-   Open that folder in your code editor.
+   Clone the repo
+   git clone https://github.com/Babutmcdb/django-user-management.git
 
 2. **Create a virtual environment and install dependencies**:
 
